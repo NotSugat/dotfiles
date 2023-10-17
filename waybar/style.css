@@ -26,6 +26,10 @@ tooltip {
     margin-right: 5px;
 }
 
+/* #workspaces button label { */
+/*     font-size: 16px; */
+/* } */
+
 #workspaces button.active {
     color: #a6adc8;
 }
