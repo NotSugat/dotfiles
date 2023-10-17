@@ -20,6 +20,8 @@ tooltip {
     border-color: #11111b;
 }
 
+
+
 #workspaces button {
     padding: 10px;
     color: #313244;
@@ -55,6 +57,7 @@ tooltip {
 
 
 #custom-weather,
+#custom-logo,
 #window,
 #clock,
 #battery,
@@ -73,6 +76,12 @@ tooltip {
     margin: 3px 0px;
     /* margin-top: 4px; */
     border: 1px solid #181825;
+}
+
+#custom-logo {
+    margin-left: 10px;
+    border-radius: 10px 0px 0px 10px;
+    border: 0;
 }
 
 #temperature {
@@ -109,9 +118,8 @@ tooltip {
 
 #clock {
     color: #fab387;
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 10px;
-    border-right: 0px;
+    border: 0;
+    border-radius: 0 10px  10px  0px;
 }
 
 #network {
