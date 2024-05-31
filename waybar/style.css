@@ -21,7 +21,7 @@ tooltip {
 }
 
 #workspaces button {
-  padding: 10px;
+  padding: 4px;
   color: #313244;
   margin-right: 5px;
 }
@@ -43,7 +43,7 @@ tooltip {
 #workspaces button.urgent {
   color: #11111b;
   background: #a6e3a1;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 #workspaces button:hover {
