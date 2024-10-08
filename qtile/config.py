@@ -1,16 +1,3 @@
-
-#       █████████     ███████    ███████████ █████ █████ ███████████ █████ █████       ██████████
-#      ███░░░░░███  ███░░░░░███ ░█░░░░░░███ ░░███ ░░███ ░█░░░███░░░█░░███ ░░███       ░░███░░░░░█
-#     ███     ░░░  ███     ░░███░     ███░   ░░███ ███  ░   ░███  ░  ░███  ░███        ░███  █ ░
-#    ░███         ░███      ░███     ███      ░░█████       ░███     ░███  ░███        ░██████
-#    ░███         ░███      ░███    ███        ░░███        ░███     ░███  ░███        ░███░░█
-#    ░░███     ███░░███     ███   ████     █    ░███        ░███     ░███  ░███      █ ░███ ░   █
-#     ░░█████████  ░░░███████░   ███████████    █████       █████    █████ ███████████ ██████████
-#      ░░░░░░░░░     ░░░░░░░    ░░░░░░░░░░░    ░░░░░       ░░░░░    ░░░░░ ░░░░░░░░░░░ ░░░░░░░░░░
-#
-#                                                                                    - DARKKAL44
-
-
 import subprocess
 import re
 import os
@@ -25,14 +12,7 @@ from time import sleep
 mod = "mod4"
 terminal = "kitty"
 
-# █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █▀
-# █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ ▄█
-
-
 keys = [
-
-    #  D E F A U L T
-
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -108,14 +88,7 @@ keys = [
     Key([], "Print", lazy.spawn("flameshot gui"), desc='Screenshot'),
 ]
 
-
-# █▀▀ █▀█ █▀█ █░█ █▀█ █▀
-# █▄█ █▀▄ █▄█ █▄█ █▀▀ ▄█
-
-
 groups = [
-    # Screen affinity here is used to make
-    # sure the groups startup on the right screens
     Group(name="1", label="", screen_affinity=0),
     Group(name="2",  label="", screen_affinity=0),
     Group(name="3", label="󰂺", screen_affinity=0),
@@ -175,6 +148,12 @@ for i in groups:
 
 
 layouts = [
+
+    layout.Columns(margin=[5, 5, 5, 5], border_focus='#cfa2fd',
+                   border_normal='#1F1D2E',
+                   border_width=1,
+                   num_columns=3,
+                   ),
     layout.Tile(border_focus='#cfa2fd',
                 border_normal='#1F1D2E',
                 border_width=1,
@@ -182,18 +161,11 @@ layouts = [
                 ratio=0.6,
                 add_after_last=True
                 ),
-    # layout.Columns(margin=[5, 5, 5, 5], border_focus='#cfa2fd',
-    #                border_normal='#1F1D2E',
-    #                border_width=1,
-    #                initial_ratio=1.4,
-    #                add_after_last=True
-    #                ),
-
-    layout.Max(border_focus='#1F1D2E',
-               border_normal='#1F1D2E',
-               margin=10,
-               border_width=0,
-               ),
+    # layout.Max(border_focus='#1F1D2E',
+    #            border_normal='#1F1D2E',
+    #            margin=10,
+    #            border_width=0,
+    #            ),
 
     # layout.Floating(border_focus='#1F1D2E',
     #                 border_normal='#1F1D2E',
@@ -202,10 +174,10 @@ layouts = [
     #                 ),
     # Try more layouts by unleashing below layouts
 
-    #  layout.Stack(num_stacks=2),
-
-    #  layout.Bsp(),
-
+    # layout.Stack(num_stacks=2),
+    #
+    # layout.Bsp(),
+    #
     # layout.Matrix(border_focus='#1F1D2E',
     #               border_normal='#1F1D2E',
     #               margin=10,
@@ -217,12 +189,12 @@ layouts = [
     #                  margin=10,
     #                  border_width=0,
     #                  ),
-    layout.MonadWide(border_focus='#cfa2fd',
-                     border_normal='#1F1D2E',
-                     margin=10,
-                     border_width=1,
-                     ),
-
+    # layout.MonadWide(border_focus='#cfa2fd',
+    #                  border_normal='#1F1D2E',
+    #                  margin=10,
+    #                  border_width=1,
+    #                  ),
+    #
     #  layout.RatioTile(),
 
 
