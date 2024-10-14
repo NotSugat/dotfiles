@@ -1,0 +1,85 @@
+general {
+        output_format = "i3bar"
+        markup = pango
+        interval = 1
+        colors = false
+        color_good = "#BF616A"
+        color_bad = "#88C0D0"
+        color_degraded = "#5E81AC"
+}
+
+order += "tztime ktm"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery all"
+order += "volume master"
+order += "cpu_temperature 0"
+order += "cpu_usage"
+order += "memory"
+order += "read_file uptime"
+
+
+cpu_temperature 0 {
+        format = "T: %degrees °C"
+				 path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+battery all {
+        format = "%status %percentage"
+				last_full_capacity = true
+        integer_battery_capacity = true
+        format_down = "No battery"
+        status_chr = "⚡"
+        status_bat = "🔋"
+        status_unk = "? UNK"
+        status_full = "☻ "
+        low_threshold = 15
+}
+
+tztime ktm {
+        format = "%Y-%m-%d %H:%M:%S"
+				timezone ="Asia/Kathmandu"
+				min_width= "670"
+				align="left"
+}
+
+
+
+volume master {
+        format = "  %volume"
+        format_muted = " Muted"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+
+wireless _first_ {
+        format_up = "W:%quality"
+        format_down = "W: down"
+}
+
+ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+load {
+        format = "%5min"
+}
+
+
+memory {
+        format = " %used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+cpu_usage {
+				format = " %usage"
+			
+}
+
+disk "/" {
+        format = "%free"
+}
+
