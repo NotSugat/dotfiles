@@ -1,3 +1,4 @@
+#
 # Please note not all available settings / options are set here.
 # For a full list, see the wiki
 #
@@ -7,11 +8,9 @@
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
 monitor=eDP-1,1920x1080@60,0x0,1
-monitor=HDMI-A-1,1920x1080@180,1920x0,1
-# monitor=HDMI-A-1,1920x1080@100,1920x0,1
-# monitor=HDMI-A-1,1920x1080@60,1920x0,1,mirror,eDP-1
+# monitor=HDMI-A-1,1920x1080@60,1920x0,1
+monitor=HDMI-A-1,1920x1080@60,1920x0,1,mirror,eDP-1
 # monitor=HDMI-A-1,1600x900@60,1920x0,1
-# monitor=HDMI-A-1,1600x900@60,1920x0,mirror,eDP-1
 
 
 
@@ -24,11 +23,10 @@ exec-once = ~/.config/waybar/launch.sh
 exec-once = env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --uri=%U
 # exec-once = sudo kmonad ~/.config/kmonad/config.kbd 
 exec-once = blueman-manager 
-exec-once = discord 
 # exec-once = brave
 # exec-once = microsoft-edge-beta
 exec-once = hyprpm reload -n
-# exec-once = kitty
+exec-once = kitty
 exec-once = swaybg -m fill -i ~/Downloads/bg.jpeg
 exec-once = copyq --start-server
 exec-once = nm-applet
@@ -60,7 +58,7 @@ input {
         natural_scroll = yes
     }
 
-    sensitivity = .3 # -1.0 - 1.0, 0 means no modification.
+    sensitivity = .7 # -1.0 - 1.0, 0 means no modification.
 
 }
   
@@ -128,13 +126,13 @@ master {
     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
     allow_small_split = false
     special_scale_factor = 0.8
-    mfact = 0.60
+    mfact = 0.5
     new_on_active = true
     new_on_top = false 
     # no_gaps_when_only = 0
     orientation = left 
     inherit_fullscreen = true
-    # always_center_master = false
+    always_center_master = false
     smart_resizing = true
 
 
@@ -169,9 +167,7 @@ windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
 windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
 # Workspace
 # windowrule = workspace 1, ^(kitty)$
-windowrule = workspace 2, ^(.*zen.*)$
 windowrule = workspace 2, ^(.*Brave.*)$
-windowrule = workspace 6, ^(.*Chromium.*)$
 windowrule = workspace 9, ^(.*Thorium*.*)$
 windowrule = workspace 10, ^(.*notion*.*)$
 windowrule = workspace 4, ^(.*discord.*)$
@@ -203,27 +199,27 @@ windowrule = size 650 400 ,^(blueman-manager)$
 
 
 # workspace rule
-workspace = 1, monitor:HDMI-A-1, default:true
-workspace = 2, monitor:HDMI-A-1, default:true
-workspace = 3, monitor:HDMI-A-1, default:true
-workspace = 4, monitor:HDMI-A-1, default:true
-workspace = 5, monitor:HDMI-A-1, default:true
-workspace = 6, monitor:eDP-1, default:true
-workspace = 7, monitor:eDP-1, default:true
-workspace = 8, monitor:eDP-1, default:true
-workspace = 9, monitor:HDMI-A-1, default:true
-workspace = 10, monitor:HDMI-A-1, default:true
+# workspace = 1, monitor:HDMI-A-1, default:true
+# workspace = 2, monitor:HDMI-A-1, default:true
+# workspace = 3, monitor:HDMI-A-1, default:true
+# workspace = 4, monitor:HDMI-A-1, default:true
+# workspace = 5, monitor:HDMI-A-1, default:true
+# workspace = 6, monitor:eDP-1, default:true
+# workspace = 7, monitor:eDP-1, default:true
+# workspace = 8, monitor:eDP-1, default:true
+# workspace = 9, monitor:HDMI-A-1, default:true
+# workspace = 10, monitor:HDMI-A-1, default:true
 
-# workspace = 1, monitor:eDP-1, default:true
-# workspace = 2, monitor:eDP-1, default:true
-# workspace = 3, monitor:eDP-1, default:true
-# workspace = 4, monitor:eDP-1, default:true
-# workspace = 5, monitor:eDP-1, default:true
-# workspace = 6, monitor:HDMI-A-1, default:true
-# workspace = 7, monitor:HDMI-A-1, default:true
-# workspace = 8, monitor:HDMI-A-1, default:true
-# workspace = 9, monitor:eDP-1, default:true
-# workspace = 10, monitor:eDP-1, default:true
+workspace = 1, monitor:eDP-1, default:true
+workspace = 2, monitor:eDP-1, default:true
+workspace = 3, monitor:eDP-1, default:true
+workspace = 4, monitor:eDP-1, default:true
+workspace = 5, monitor:eDP-1, default:true
+workspace = 6, monitor:HDMI-A-1, default:true
+workspace = 7, monitor:HDMI-A-1, default:true
+workspace = 8, monitor:HDMI-A-1, default:true
+workspace = 9, monitor:eDP-1, default:true
+workspace = 10, monitor:eDP-1, default:true
 
 # dwindle rule
 # bind = SUPER_CTRL, Space, submap, preselect_layout
@@ -251,8 +247,6 @@ $mainMod = SUPER
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, Return, exec, alacritty
 bind = $mainMod, b, exec, firefox 
-bind = $mainMod, z, exec, zen-browser 
-bind = $mainMod, x, exec, chromium 
 bind = $mainMod, C, killactive, 
 bind = $mainMod, Shift q, exit, 
 bind = $mainMod Shift, S, exec, systemctl suspend && ~/.config/hypr/swaylock.sh

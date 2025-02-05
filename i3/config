@@ -12,6 +12,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id picom
 exec --no-startup-id discord
 exec --no-startup-id obsidian
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id xset r rate 250 160
 # exec --no-startup-id ~/.screenlayout/xscreensaver.sh
 exec --no-startup-id env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --uri=%U
@@ -54,7 +55,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+c kill
 
 # start dmenue(a program launcher)
-bindsym $mod+r exec --no-startup-id "rofi -show drun"
+bindsym $mod+r exec  "rofi -show drun"
 
 # change focus
 bindsym $mod+h focus left
@@ -99,6 +100,12 @@ mode "resize" {
 }
 
 bindsym $mod+s mode "resize"
+bindsym $mod+Shift+v resize grow height 100 px or 100 ppt 
+
+bindsym $mod+Control+h exec python ~/.config/i3/scripts/direction-maximize.py left 150
+bindsym $mod+Control+j exec python ~/.config/i3/scripts/direction-maximize.py down 150
+bindsym $mod+Control+k exec python ~/.config/i3/scripts/direction-maximize.py up 150
+bindsym $mod+Control+l exec python ~/.config/i3/scripts/direction-maximize.py right 150
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -173,7 +180,7 @@ assign [class=".*Slack*."] $ws4
 assign [class=".*Spotify*."] $ws5
 assign [class=".*Docker*."] $ws8
 
-# for multi screen workspace rules
+# bigger screen
 workspace $ws1 output HDMI-1-1
 workspace $ws2 output HDMI-1-1
 workspace $ws3 output HDMI-1-1
@@ -184,6 +191,20 @@ workspace $ws7 output eDP-1
 workspace $ws8 output eDP-1
 workspace $ws9 output HDMI-1-1
 workspace $ws10 output HDMI-1-1
+
+# Smaller screen
+
+# workspace $ws1 output eDP-1
+# workspace $ws2 output eDP-1
+# workspace $ws3 output eDP-1
+# workspace $ws4 output eDP-1
+# workspace $ws5 output eDP-1
+# workspace $ws6 output HDMI-1-1
+# workspace $ws7 output HDMI-1-1
+# workspace $ws8 output HDMI-1-1
+# workspace $ws9 output eDP-1
+# workspace $ws10 output eDP-1
+
 
 
 # mark like vim
@@ -230,7 +251,7 @@ mode "$mode_system" {
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-        position top
-}
+# bar {
+#         status_command i3status
+#         position top
+# }
