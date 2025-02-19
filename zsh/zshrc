@@ -1,0 +1,161 @@
+eval "$(zoxide init zsh)"
+
+# vi mode
+bindkey -v
+
+# Fix backspace bug when switching modes
+bindkey "^?" backward-delete-char
+
+# related to history file
+HISTFILE=~/.config/zsh/histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+# opts
+setopt autocd extendedglob nomatch notify HIST_IGNORE_DUPS
+unsetopt beep CASE_GLOB
+
+# for auto completion
+zstyle :compinstall filename '~/.config/zsh/zshrc'
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select # highlights completion text
+compinit
+
+# User configuration
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+export EDITOR='nvim'
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+# manpager
+export MANPAGER='nvim +Man!'
+
+# display
+export DISPLAY=:0
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# ex = EXtractor for all kinds of archives
+# usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   tar xf $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# find all directories
+f() {
+    selected_path=$(fd --type d --search-path ~/ | fzf)
+    [ -z "$selected_path" ] && return  # If no directory is selected, exit the function.
+    cd "$selected_path" || return
+    tmux
+}
+
+# CUSTOM ALIASES
+# ls
+alias ls='lsd'
+alias la='ls -A'
+alias ll='ls -alh'
+
+# yay
+alias yays='yay -S'
+alias yayss='yay -Ss'
+alias update='sudo pacman -Syu && yay -Syu'
+alias yayr='yay -R'
+
+# zshrc
+alias sz='source ~/.zshrc'
+
+nz() {
+	current_dir=$(pwd)
+
+	cd ~/.config/zsh; $EDITOR zshrc; cd $current_dir
+}
+
+# make directory parent
+alias mkdir='mkdir -p'
+
+# find and grep
+alias grep='grep --color=auto'
+alias rg='rg --color=auto'
+alias find='find 2>/dev/null'
+alias findhere='find ./ 2>/dev/null | rg'
+alias findroot='find / 2>/dev/null | rg'
+
+# grub update
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+# file size
+alias du='du -h'
+
+# nvim shortcut
+nv () {
+	if [ "$#" -eq 0 ]; then
+		nvim .
+	else
+		nvim "$@"
+	fi
+}
+
+# neovim config
+alias cdnvim='~/.config/nvim'
+
+# xdg-open
+alias open='xdg-open 2>/dev/null'
+
+# set cpupower to performance
+alias cpufast='sudo cpupower frequency-set -g performance'
+
+# trash and rm
+alias rm='trash'
+alias remove='\rm -rf'
+
+# neofetch
+alias nf='neofetch'
+
+# zellij
+alias zel='zellij'
+alias za='zellij attach'
+alias zl='zellij ls'
+alias lg='lazygit'
+
+export ANDROID_HOME=/home/crux/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools:~/.local/bin
+
+
+# copy
+alias cp='cp -rf'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+
+
