@@ -1,0 +1,4 @@
+[submodule "screen-layout"]
+	path = screen-layout
+	url = git@github.com:notsugat/screen-layout.git
+	branch = main
