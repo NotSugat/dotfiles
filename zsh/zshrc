@@ -1,4 +1,5 @@
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 # vi mode
 bindkey -v
@@ -34,8 +35,12 @@ export ARCHFLAGS="-arch x86_64"
 # manpager
 export MANPAGER='nvim +Man!'
 
-# display
-export DISPLAY=:0
+
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+  export DISPLAY=:1
+else
+  export DISPLAY=:0
+fi
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -82,6 +87,8 @@ alias la='ls -A'
 alias ll='ls -alh'
 
 # yay
+alias pi='sudo pacman -S'
+
 alias yays='yay -S'
 alias yayss='yay -Ss'
 alias update='sudo pacman -Syu && yay -Syu'
@@ -89,12 +96,8 @@ alias yayr='yay -R'
 
 # zshrc
 alias sz='source ~/.zshrc'
+alias vsc='code --ozone-platform=wayland .'
 
-nz() {
-	current_dir=$(pwd)
-
-	cd ~/.config/zsh; $EDITOR zshrc; cd $current_dir
-}
 
 # make directory parent
 alias mkdir='mkdir -p'
@@ -130,6 +133,9 @@ alias open='xdg-open 2>/dev/null'
 # set cpupower to performance
 alias cpufast='sudo cpupower frequency-set -g performance'
 
+alias snv='source venv/bin/activate & nvim .'
+alias spy='source venv/bin/activate & python'
+
 # trash and rm
 alias rm='trash'
 alias remove='\rm -rf'
@@ -146,6 +152,7 @@ alias lg='lazygit'
 export ANDROID_HOME=/home/crux/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools:~/.local/bin
+export PATH=$PATH:~/.cargo/bin
 
 
 # copy
