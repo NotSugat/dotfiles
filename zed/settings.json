@@ -11,14 +11,15 @@
   "git_panel": {
     "dock": "right"
   },
+
   "icon_theme": "Catppuccin Mocha",
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": null
   },
   "base_keymap": "VSCode",
   "theme": "Catppuccin Macchiato",
-  "ui_font_size": 17,
-  "buffer_font_size": 18,
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
   // Finder model width
   "file_finder": {
     "modal_width": "medium"
@@ -53,13 +54,13 @@
     "right_padding": 0.15
   },
   // Use Copilot Chat AI as default
-  "assistant": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-7-sonnet"
-    },
-    "version": "2"
-  },
+  // "assistant": {
+  //   "default_model": {
+  //     "provider": "copilot_chat",
+  //     "model": "claude-3-7-sonnet"
+  //   },
+  //   "version": "2"
+  // },
   // Uncomment below to use local AI with Ollama, refer https://zed.dev/docs/language-model-integration?highlight=ollama#using-ollama-on-macos
   // "assistant": {
   //   "default_model": {
@@ -69,11 +70,11 @@
   //   "version": "2",
   //   "provider": null
   // },
-  "language_models": {
-    "ollama": {
-      "api_url": "http://localhost:11434"
-    }
-  },
+  // "language_models": {
+  //   "ollama": {
+  //     "api_url": "http://localhost:11434"
+  //   }
+  // },
   // Inlay hints preconfigured by Zed: Go, Rust, Typescript and Svelte
   "inlay_hints": {
     "enabled": true
