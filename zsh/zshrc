@@ -1,5 +1,6 @@
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)" # for python venv loading unloading
 
 # vi mode
 bindkey -v
@@ -9,8 +10,8 @@ bindkey "^?" backward-delete-char
 
 # related to history file
 HISTFILE=~/.config/zsh/histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 # opts
 setopt autocd extendedglob nomatch notify HIST_IGNORE_DUPS
@@ -124,6 +125,23 @@ nv () {
 	fi
 }
 
+hx () {
+	if [ "$#" -eq 0 ]; then
+		helix .
+	else
+		helix "$@"
+	fi
+}
+
+# nvim shortcut for lazy-nvim config
+nl () {
+    if [ "$#" -eq 0 ]; then
+        NVIM_APPNAME=lazy-nvim nvim .
+    else
+        NVIM_APPNAME=lazy-nvim nvim "$@"
+    fi
+}
+
 # neovim config
 alias cdnvim='~/.config/nvim'
 
@@ -146,6 +164,7 @@ alias nf='neofetch'
 # zellij
 alias zel='zellij'
 alias za='zellij attach'
+alias zd='zellij delete-session'
 alias zl='zellij ls'
 alias lg='lazygit'
 
@@ -153,7 +172,10 @@ export ANDROID_HOME=/home/crux/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools:~/.local/bin
 export PATH=$PATH:~/.cargo/bin
-
+export PATH=$PATH:/var/lib/snapd/snap/bin
+# opencode
+export PATH=/home/crux/.opencode/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # copy
 alias cp='cp -rf'
@@ -164,5 +186,16 @@ export NVM_DIR="$HOME/.nvm"
 
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+
+
+# fcitx 5
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+QT_QPA_PLATFORM=xcb QT_IM_MODULE=ibus 
+
+MOZ_ENABLE_WAYLAND=1
+__NV_PRIME_RENDER_OFFLOAD=1 
+__GLX_VENDOR_LIBRARY_NAME=nvidia
+
 
 
